@@ -12,7 +12,7 @@ const PrimaryButton = (props) => {
 const style = StyleSheet.create({
     primaryButton: {
         backgroundColor: '#B10E0E',
-        borderRadius: 16,
+        borderRadius: 100,
         width: '80%'
     },
     onPrimaryButton: {
