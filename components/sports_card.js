@@ -34,10 +34,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "grey"
   },
-  cardImage: {
-    height: 200,
-    width: 200,
-  },
   subtitleMedium: {
     marginHorizontal: 64,
     textAlign: "center",
