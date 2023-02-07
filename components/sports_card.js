@@ -11,7 +11,7 @@ const SportCards = (props) => {
   return (
     <TouchableOpacity>
       <View style={styles.card}>
-        <Image source={props.source} style={styles.cardImage} />
+        <Image source={props.source} />
         <Text style={styles.subtitleMedium}>{props.title}</Text>
       </View>
     </TouchableOpacity>
