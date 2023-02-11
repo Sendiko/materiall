@@ -4,8 +4,10 @@ import {
   Text,
   SafeAreaView,
   ScrollView,
+  ToastAndroid,
   View,
   StatusBar,
+  FlatList,
 } from "react-native";
 import SportCards from "../components/sports_card";
 
@@ -13,53 +15,61 @@ const sports = [
   {
     id: 1,
     name: "Karate",
-    image: "../assets/sports_icon/karate.png",
+    image: require("../assets/sports_icon/Karate.png"),
   },
   {
     id: 2,
     name: "Kungfu",
-    image: "../assets/sports_icon/Kungfu.png",
+    image: require("../assets/sports_icon/Kungfu.png"),
   },
   {
     id: 3,
     name: "Capoeira",
-    image: "../assets/sports_icon/Capoeira.png",
+    image: require("../assets/sports_icon/Capoeira.png"),
+  },
+  {
+    id: 4,
+    name: "Judo",
+    image: require("../assets/sports_icon/Judo.png"),
+  },
+  {
+    id: 5,
+    name: "Boxing",
+    image: require("../assets/sports_icon/Boxing.png"),
+  },
+  {
+    id: 6,
+    name: "Taekwondo",
+    image: require("../assets/sports_icon/Taekwondo.png"),
   },
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+  const navigateToScreen = (id, name) => {
+    navigation.navigate("SportsScreen");
+    notifyMessage(`${name} clicked!`)
+  };
+  const notifyMessage = (msg) => {
+    if (Platform.OS === 'android') {
+      ToastAndroid.show(msg, ToastAndroid.SHORT)
+    } else {
+      AlertIOS.alert(msg);
+    }
+  }
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <Text style={styles.titleMedium}> Apa Yang Anda Ingin Ketahui?</Text>
       <View style={{ marginTop: 20 }}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.scrollView}>
-          <SportCards
-            source={require("../assets/sports_icon/Karate.png")}
-            title={"Karate"}
-          />
-          <SportCards
-            source={require("../assets/sports_icon/Kungfu.png")}
-            title={"Kungfu"}
-          />
-          <SportCards
-            source={require("../assets/sports_icon/Capoeira.png")}
-            title={"Capoeira"}
-          />
-          <SportCards
-            source={require("../assets/sports_icon/Judo.png")}
-            title={"Judo"}
-          />
-          <SportCards
-            source={require("../assets/sports_icon/Boxing.png")}
-            title={"Boxing"}
-          />
-          <SportCards
-            source={require("../assets/sports_icon/Taekwondo.png")}
-            title={"Taekwondo"}
-          />
-          <View style={styles.invisPlaceHolder}/>
-        </ScrollView>
+        <FlatList
+          horizontal={true}
+          data={sports}
+          renderItem={({ item }) => (
+            <SportCards source={item.image} title={item.name}onPress={() => navigateToScreen(item.id, item.name)}/>
+          )}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scrollView}
+        />
       </View>
     </View>
   );
@@ -73,13 +83,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#FBFAFF",
     flexDirection: "column",
     justifyContent: "center",
-    verticalAlign: "center"
+    verticalAlign: "center",
   },
   scrollView: {
-    backgroundColor: "#fbfaff",
-    flexDirection: "column",
+    backgroundColor: "#FBFAFF",
     paddingLeft: "15%",
-    flexWrap: "wrap",
+    paddingRight: "10%"
   },
   titleMedium: {
     fontSize: 24,
