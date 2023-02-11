@@ -1,10 +1,10 @@
 import react from "react";
 import { StyleSheet, SafeAreaView, Image, Text, StatusBar } from "react-native";
-import PrimaryButton from "../components/custom_button";
+import PrimaryButton from "../components/buttons/primary_button";
 
 const SplashScreen = ({ navigation }) => {
-  const navigateToLogin = () => {
-    navigation.navigate("HomeScreen");
+  const navigate = (route) => {
+    navigation.navigate(route);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -14,7 +14,7 @@ const SplashScreen = ({ navigation }) => {
         “berani dan jelajahi olahraga bela diri dengan senang”
       </Text>
       <Image source={require("../assets/splash_icon.png")} />
-      <PrimaryButton text={"Ayo Mulai"} onPress={navigateToLogin} />
+      <PrimaryButton text={"Ayo Mulai"} onPress={() => navigate("HomeScreen")} />
     </SafeAreaView>
   );
 };
