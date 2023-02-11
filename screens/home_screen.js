@@ -45,9 +45,9 @@ const sports = [
 ];
 
 const HomeScreen = ({ navigation }) => {
-  const navigateToScreen = (id, name) => {
-    navigation.navigate("SportsScreen");
-    notifyMessage(`${name} clicked!`);
+  const navigateToScreen = (sport) => {
+    navigation.navigate("SportsScreen", {sport: sport});
+    notifyMessage(`${sport.name} clicked!`);
   };
   const notifyMessage = (msg) => {
     if (Platform.OS === "android") {
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
             <SportCards
               source={item.image}
               title={item.name}
-              onPress={() => navigateToScreen(item.id, item.name)}
+              onPress={() => navigateToScreen(item)}
             />
           )}
           showsHorizontalScrollIndicator={false}
