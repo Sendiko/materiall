@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const SportCards = (props) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={styles.card}>
         <Image source={props.source} />
         <Text style={styles.subtitleMedium}>{props.title}</Text>
@@ -32,7 +26,7 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 8,
     borderWidth: 1,
-    borderColor: "grey"
+    borderColor: "grey",
   },
   subtitleMedium: {
     marginHorizontal: 64,
