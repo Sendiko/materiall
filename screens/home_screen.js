@@ -47,15 +47,15 @@ const sports = [
 const HomeScreen = ({ navigation }) => {
   const navigateToScreen = (id, name) => {
     navigation.navigate("SportsScreen");
-    notifyMessage(`${name} clicked!`)
+    notifyMessage(`${name} clicked!`);
   };
   const notifyMessage = (msg) => {
-    if (Platform.OS === 'android') {
-      ToastAndroid.show(msg, ToastAndroid.SHORT)
+    if (Platform.OS === "android") {
+      ToastAndroid.show(msg, ToastAndroid.SHORT);
     } else {
       AlertIOS.alert(msg);
     }
-  }
+  };
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -65,7 +65,11 @@ const HomeScreen = ({ navigation }) => {
           horizontal={true}
           data={sports}
           renderItem={({ item }) => (
-            <SportCards source={item.image} title={item.name}onPress={() => navigateToScreen(item.id, item.name)}/>
+            <SportCards
+              source={item.image}
+              title={item.name}
+              onPress={() => navigateToScreen(item.id, item.name)}
+            />
           )}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.scrollView}
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: "#FBFAFF",
     paddingLeft: "15%",
-    paddingRight: "10%"
+    paddingRight: "10%",
   },
   titleMedium: {
     fontSize: 24,
