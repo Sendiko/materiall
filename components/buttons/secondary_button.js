@@ -9,17 +9,9 @@ const SecondaryButton = (props) => {
   );
 };
 
-const IconButton =(props) => {
-    return(
-        <TouchableOpacity style={style.iconButton}>
-            <Image source={props.icon}/>
-        </TouchableOpacity>
-    )
-}
-
 const style = StyleSheet.create({
   secondaryButton: {
-    backgroundColor: "#B7DBFD",
+    backgroundColor: "#FDDE39",
     borderRadius: 100,
     width: "100%",
     alignSelf: "center"
@@ -31,11 +23,6 @@ const style = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
-  iconButton: {
-    flexWrap: "wrap",
-    alignContent: "center",
-    padding: 4
-  }
 });
 
 export default SecondaryButton;
