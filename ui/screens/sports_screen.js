@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, ActivityIndicator, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import IconButton from "../components/buttons/icon_button";
 import SecondaryButton from "../components/buttons/secondary_button";
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 const URL = "http://10.212.79.11:3000/api";
 
@@ -28,25 +29,26 @@ const SportsScreen = ({ navigation, route }) => {
         setIsError(false);
       })
       .catch((error) => {
-        console.error(error);
-        if(error.code == 500){
-          setIsError(true)
-        }
+        console.log(error);
+        setIsLoading(false);
+        setIsError(true);
       });
   }, []);
-  if (isLoading == true) {
+  if (isLoading) {
     return (
       <View style={[styles.container, styles.horizontal]}>
         <ActivityIndicator size="large" color="#00ff00" />
       </View>
     );
   }
-  if (isError == true) {
-    <View style={[styles.container, styles.horizontal]}>
-      <Image source={require("../assets/cloud.png")} />
-    </View>;
+  if (isError) {
+    return (
+      <View style={[styles.container, styles.center]}>
+        <Ionicons name="cloud-offline-outline" size={128}/>
+        <Text style={styles.subtitle}>Server error.</Text>
+      </View>
+    );
   }
-  console.log("isError: " + isError);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -97,6 +99,15 @@ const styles = StyleSheet.create({
     alignContent: "flex-start",
     flex: 1,
   },
+  alsoContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   header: {
     width: "100%",
     flexWrap: "wrap",
@@ -139,7 +150,7 @@ const styles = StyleSheet.create({
   },
   horizontal: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     padding: 10,
   },
 });
